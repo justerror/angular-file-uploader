@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFileUploaderConfig } from 'angular-file-uploader';
+import { AngularFileUploaderConfig } from 'projects/angular-file-uploader/src/lib/angular-file-uploader.component';
 
 @Component({
   selector: 'ld-root',

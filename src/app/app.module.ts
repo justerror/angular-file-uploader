@@ -1,6 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFileUploaderModule } from "angular-file-uploader";
+import { BrowserModule } from '@angular/platform-browser';
+import { AngularFileUploaderModule } from 'projects/angular-file-uploader/src/lib/angular-file-uploader.module';
 // To use angular-file-uploader from node-modules remove paths from tsconfig.json in root.
 /*
 "paths": {
