@@ -22,6 +22,7 @@ export interface AngularFileUploaderConfig {
   formatsAllowed?: string;
   multiple?: boolean;
   oneFilePerRequest?: boolean;
+  key?: string;
   replaceTexts?: ReplaceTexts;
 }
 
@@ -62,6 +63,7 @@ export class AngularFileUploaderComponent implements OnInit, OnChanges {
   hideResetBtn: boolean;
   hideSelectBtn: boolean;
   oneFilePerRequest: boolean;
+  key: string;
   reg: RegExp = /(?:\.([^.]+))?$/;
   selectedFiles: File[] = [];
   notAllowedList: { fileName: string; fileSize: string; errorMsg: string; }[] = [];
@@ -102,6 +104,7 @@ export class AngularFileUploaderComponent implements OnInit, OnChanges {
       this.multiple = this.config.multiple || false;
       this.headers = this.config.uploadAPI.headers || {};
       this.oneFilePerRequest = !!this.config.oneFilePerRequest;
+      this.key = this.config.key || 'file';
       const defaultReplaceTextsValues: ReplaceTexts = {
         selectFileBtn: this.multiple ? 'Select Files' : 'Select File',
         resetBtn: 'Reset',
@@ -213,7 +216,7 @@ export class AngularFileUploaderComponent implements OnInit, OnChanges {
 
         // Add data to be sent in this request
         formData.append(
-          this.Caption[inx] || 'file' + inx,
+          this.Caption[inx] || this.key,
           this.selectedFiles[inx],
         );
 
@@ -226,7 +229,7 @@ export class AngularFileUploaderComponent implements OnInit, OnChanges {
       // Add data to be sent in this request
       this.selectedFiles.forEach((selectedFile, inx) => {
         formData.append(
-          this.Caption[inx] || 'file' + inx,
+          this.Caption[inx] || this.key + (this.singleFile ? '' : inx),
           this.selectedFiles[inx],
         );
       });
